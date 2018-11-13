@@ -52,8 +52,8 @@ public class Spawner : MonoBehaviour
 
     private void Update ()
     {
-        if (holders.transform.childCount == 0)
-            SpawnHolder();
+        //if (holders.transform.childCount == 0)
+           // SpawnHolder();
     }
 
     #endregion
@@ -62,6 +62,12 @@ public class Spawner : MonoBehaviour
     public void SpawnHolder()
     {
         Instantiate(holderPrefab, holders.transform);
+        GenerateNewPieces();
+    }
+
+    public void SpawnHolder(Vector3 position, Quaternion rotation)
+    {
+        Instantiate(holderPrefab, position, rotation).transform.SetParent(holders.transform);
         GenerateNewPieces();
     }
 

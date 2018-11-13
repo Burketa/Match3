@@ -25,6 +25,7 @@ public class Controller : MonoBehaviour
 
     public void TakeLife()
     {
+        //TODO: ao take life, por o efeito em cima da vida e dar um fade.
         int i = 0;
         foreach (Transform life in lives)
         {
