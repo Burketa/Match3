@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class Holder : MonoBehaviour
 {
+    #region Public Variables
+
     public float translateSpeed = 1, rotateSpeed = 1;
 
-    private List<int> types = new List<int>();
-    private void Start()
-    {
-        if (Random.value < 0.7f)
-            rotateSpeed = -rotateSpeed;
-    }
-    private void Update()
-    {
-        Rotate();
-    }
+    #endregion
 
-    private void Rotate()
-    {
-        transform.RotateAround(Vector3.zero, Vector3.forward, -translateSpeed * Time.deltaTime);
-        transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
-    }
+    #region Private Variables
+
+    private List<int> types = new List<int>();
+
+    #endregion
+
+    #region Methods
+
+    #region Public Methods
 
     public void AddPiece(Piece piece)
     {
@@ -53,4 +50,28 @@ public class Holder : MonoBehaviour
         if (types.Contains(1) && types.Contains(2) && types.Contains(3))
             Destroy(gameObject);
     }
+
+    #endregion
+
+    #region Private Methods
+
+    private void Start()
+    {
+        if (Random.value < 0.7f)
+            rotateSpeed = -rotateSpeed;
+    }
+    private void Update()
+    {
+        Rotate();
+    }
+
+    private void Rotate()
+    {
+        transform.RotateAround(Vector3.zero, Vector3.forward, -translateSpeed * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 0, rotateSpeed * Time.deltaTime));
+    }
+
+    #endregion
+
+    #endregion
 }

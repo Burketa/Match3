@@ -6,13 +6,22 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
+    #region Public Variables
+
     public Transform lives;
     public Slider timer;
+
+    #endregion
+
+    #region Private Methods
 
     public void Start()
     {
         StartCoroutine(StartTimer());
     }
+    #endregion
+
+    #region Public Methods
 
     public void TakeLife()
     {
@@ -55,4 +64,6 @@ public class Controller : MonoBehaviour
         timer.value += qtd;
         Mathf.Clamp(timer.value, 0, timer.maxValue);
     }
+
+    #endregion
 }

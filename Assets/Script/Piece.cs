@@ -5,16 +5,29 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
+    #region Public Variables
+
     public int type;
-    
+    #endregion
+
+    #region Private Variables
+
     private bool enableDrag;
     private Holder holder;
     private Spawner spawner;
+
+    #endregion
+
+    #region Private Methods
 
     private void Start()
     {
         spawner = FindObjectOfType<Spawner>();
     }
+
+    #endregion
+
+    #region public Methods
 
     public void OnTriggerEnter2D(Collider2D collided)
     {
@@ -31,5 +44,6 @@ public class Piece : MonoBehaviour
         transform.position = Vector2.zero;
         spawner.enableDrag = false;
     }
-    
+
+    #endregion
 }

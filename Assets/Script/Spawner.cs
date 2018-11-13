@@ -4,10 +4,44 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    #region Public Variables
+
+    public bool enableDrag;
+
     public GameObject[] piecePrefabs;
     public GameObject holders, holderPrefab;
 
-    public bool enableDrag;
+    #endregion
+
+    #region Methods
+
+    #region Mouse Methods
+
+    private void OnMouseDown()
+    {
+        enableDrag = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        if (enableDrag)
+        {
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            curPosition.z = 0;
+            transform.GetChild(0).position = curPosition;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        enableDrag = false;
+        if (transform.childCount > 0)
+            transform.GetChild(0).GetComponent<Piece>().Reset();
+    }
+
+    #endregion
+
+    #region Private Methods
 
     private void Start()
     {
@@ -16,12 +50,15 @@ public class Spawner : MonoBehaviour
         GrabPiece(); //Coloca a primeira peça no lugar
     }
 
-    void Update ()
+    private void Update ()
     {
         if (holders.transform.childCount == 0)
             SpawnHolder();
     }
 
+    #endregion
+
+    #region Public Methods
     public void SpawnHolder()
     {
         Instantiate(holderPrefab, holders.transform);
@@ -79,26 +116,7 @@ public class Spawner : MonoBehaviour
         GrabPiece();
     }
 
-    private void OnMouseDown()
-    {
-        enableDrag = true;
-    }
+    #endregion
 
-    private void OnMouseDrag()
-    {
-        if (enableDrag)
-        {
-            Vector3 curPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            curPosition.z = 0;
-            transform.GetChild(0).position = curPosition;
-        }
-    }
-
-    private void OnMouseUp()
-    {
-        enableDrag = false;
-        if(transform.childCount > 0)
-            transform.GetChild(0).GetComponent<Piece>().Reset();
-    }
-
+    #endregion
 }

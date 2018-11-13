@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Example : MonoBehaviour
 {
-    #region Class Swipes definition
+    #region Class Swipes
     /*
     [SerializeField]
     public class Swipes
